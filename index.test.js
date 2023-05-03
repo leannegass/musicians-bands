@@ -58,8 +58,17 @@ describe('Band, Musician, and Song Models', () => {
         //expect(testBand.name).toBe(null);
     })
 
-    // test('can delete a Musician', async () => {
-    //     // TODO - test deleting a musician
-    //     expect('NO TEST').toBe('EXPECTED VALUE HERE');
-    // })
+    test('can delete a Musician', async () => {
+        // TODO - test deleting a musician
+        const testMusician = await Musician.create({name : "Paul", instrument : "guitar"})
+        const deleteMusician = await testMusician.destroy({where : {name : "Paul"}});
+        expect(deleteMusician.name).toBe('Paul');
+    })
+
+    test('can delete a Song', async () => {
+        // TODO - test updating a song
+        const testSong = await Song.create({title : "Hey Jude", year : 1968, length : 432})
+        const deleteSong = await testSong.destroy({where : {title : "Hey Jude"}});
+        expect(deleteSong.title).toBe("Hey Jude");
+    })
 })
