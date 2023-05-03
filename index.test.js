@@ -67,8 +67,29 @@ describe('Band, Musician, and Song Models', () => {
 
     test('can delete a Song', async () => {
         // TODO - test updating a song
-        const testSong = await Song.create({title : "Hey Jude", year : 1968, length : 432})
+        const testSong = await Song.create({title : "Hey Jude", year : 1968, length : 432});
         const deleteSong = await testSong.destroy({where : {title : "Hey Jude"}});
         expect(deleteSong.title).toBe("Hey Jude");
     })
+
+    //test for increment and decrement
+    test('can increment for Song year', async () => {
+        // TODO - test updating a song
+        const testSong = await Song.create({title : "Hey Jude", year : 1968, length : 432});
+        await testSong.increment("year", {by: 1 });
+        expect(testSong.year).toEqual(1969);
+    })
+
+    test('can multiple decrements for Song year and length', async () => {
+        // TODO - test updating a song
+        const testSong = await Song.create({title : "Hey Jude", year : 1968, length : 432});
+        await testSong.decrement({ 'year': 2, 'length' : 2 });
+        expect(testSong.length).toEqual(430);
+        expect(testSong.year).toEqual(1966);
+        
+    })
+
+    
 })
+
+
